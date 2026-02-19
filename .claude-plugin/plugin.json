@@ -1,0 +1,17 @@
+{
+  "name": "persist-permissions",
+  "description": "Persist Claude Code project permissions to global settings for cross-session use. Normalizes verbose permission entries to wildcard patterns and merges them into ~/.claude/settings.json.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dan Kennedy"
+  },
+  "keywords": [
+    "permissions",
+    "settings",
+    "productivity"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dansherpa/persist-permissions-plugin"
+  }
+}
