@@ -121,7 +121,7 @@ fi
 
 echo -e "${BLUE}Will add $NEW_COUNT permission(s) to $GLOBAL_SETTINGS${NC}"
 echo
-read -p "Apply these changes? [y/N] " -n 1 -r
+read -p "Apply these changes? [y/N] " -n 1 -r < /dev/tty
 echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
