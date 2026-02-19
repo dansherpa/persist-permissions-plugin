@@ -31,9 +31,9 @@ Run the bootstrap script **before** restarting to save your permissions first:
 
 ```bash
 # From your project directory (where you've granted permissions)
-curl -fsSL https://raw.githubusercontent.com/dansherpa/persist-permissions-plugin/main/scripts/persist-permissions.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dansherpa/persist-permissions-plugin/main/scripts/persist-permissions.sh | bash -s -- -y
 
-# Or if you've cloned the repo:
+# Or if you've cloned the repo (will prompt for confirmation):
 ./scripts/persist-permissions.sh
 ```
 

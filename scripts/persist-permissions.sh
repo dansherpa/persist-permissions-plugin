@@ -2,8 +2,19 @@
 # persist-permissions.sh
 # Bootstrap script - run this BEFORE restarting Claude Code to persist your permissions.
 # After the plugin is installed, use /persist-permissions instead.
+#
+# Usage: ./persist-permissions.sh [-y]
+#   -y  Skip confirmation prompt (required when piping to bash)
 
 set -e
+
+AUTO_APPROVE=false
+while getopts "y" opt; do
+    case $opt in
+        y) AUTO_APPROVE=true ;;
+        *) ;;
+    esac
+done
 
 GLOBAL_SETTINGS="$HOME/.claude/settings.json"
 LOCAL_SETTINGS=".claude/settings.local.json"
@@ -121,12 +132,14 @@ fi
 
 echo -e "${BLUE}Will add $NEW_COUNT permission(s) to $GLOBAL_SETTINGS${NC}"
 echo
-read -p "Apply these changes? [y/N] " -n 1 -r < /dev/tty
-echo
 
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo -e "${YELLOW}Cancelled.${NC}"
-    exit 0
+if [[ "$AUTO_APPROVE" != true ]]; then
+    read -p "Apply these changes? [y/N] " -n 1 -r < /dev/tty
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo -e "${YELLOW}Cancelled.${NC}"
+        exit 0
+    fi
 fi
 
 if [[ -f "$GLOBAL_SETTINGS" ]]; then
